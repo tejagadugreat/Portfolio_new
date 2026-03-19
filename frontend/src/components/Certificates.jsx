@@ -6,27 +6,27 @@ const certificates = [
   {
     title: "CodeQuest: DSA Summer Bootcamp From Basics to Brilliance",
     provider: "Lovely Professional University",
-    image: "/assets/certificates/dsa_training.jpg",
+    image: "assets/certificates/dsa_training.jpg",
   },
   {
     title: "Computational Theory: Language Principle & Finite Automata Theory",
     provider: "Udemy",
-    image: "/assets/certificates/Automata.png",
+    image: "assets/certificates/Automata.png",
   },
   {
     title: "Master Generative AI & Generative AI Tools",
     provider: "Udemy",
-    image: "/assets/certificates/Generative Ai.png",
+    image: "assets/certificates/Generative Ai.png",
   },
   {
     title: "Prompt Engineering",
     provider: "Udemy",
-    image: "/assets/certificates/Promt Engineering.png",
+    image: "assets/certificates/Promt Engineering.png",
   },
   {
     title: "Code-A-Haunt 24-hour Hackathon Participation",
     provider: "CodingBlocks LPU",
-    image: "/assets/certificates/code_a_haunt.png",
+    image: "assets/certificates/code_a_haunt.png",
   },
 ];
 

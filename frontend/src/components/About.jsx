@@ -47,7 +47,7 @@ export default function About() {
           >
             <div className="relative z-10 rounded-[60px] overflow-hidden shadow-2xl dark:shadow-peach/10 rotate-3 hover:rotate-0 transition-transform duration-500">
                <img 
-                 src="/assets/photos/profile.jpg" 
+                 src="assets/photos/profile.jpg" 
                  alt="Teja Reddy" 
                  className="w-full aspect-[4/5] object-cover"
                  onError={(e) => { e.target.onerror = null; e.target.src = 'https://ui-avatars.com/api/?name=Teja+Reddy&background=fb923c&color=fff&size=512'; }}

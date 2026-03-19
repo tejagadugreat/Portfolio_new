@@ -42,7 +42,7 @@ export default function Experience() {
             <div className="w-full md:w-[45%] glass-card p-8 rounded-2xl border border-white/5 hover:border-purple-500/50 transition-colors shadow-xl">
               <div className="relative h-48 mb-6 rounded-xl overflow-hidden border border-white/10 group-hover:border-purple-500/30 transition-colors">
                 <img 
-                  src="/assets/photos/crave_delivery.jpg" 
+                  src="assets/photos/crave_delivery.jpg" 
                   alt="Freelance Project" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

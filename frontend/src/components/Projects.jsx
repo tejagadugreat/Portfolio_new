@@ -6,7 +6,7 @@ const projects = [
   {
     title: "Farmer Portal – Scheme Eligibility System",
     description: "A web application helping farmers instantly check eligibility for government welfare schemes with simple UI for rural users.",
-    image: "/assets/photos/farmer_portal.jpg",
+    image: "assets/photos/farmer_portal.jpg",
     tags: ["PHP", "MySQL", "HTML", "CSS"],
     category: "Full Stack",
     github: "https://github.com/tejagadugreat/farmer_portel.git",
@@ -16,7 +16,7 @@ const projects = [
   {
     title: "Mitai Garage – Sweets E-Commerce",
     description: "Full stack e-commerce platform for a sweets business allowing online ordering and secure payments.",
-    image: "/assets/photos/mitai_garage.png",
+    image: "assets/photos/mitai_garage.png",
     tags: ["Node.js", "Express.js", "JavaScript", "HTML/CSS", "Payment"],
     category: "Full Stack",
     github: "https://github.com/tejagadugreat/sweets-ecom.git",
@@ -26,7 +26,7 @@ const projects = [
   {
     title: "Crave \u2013 Food Delivery Platform",
     description: "A premium food delivery web application built for a recurring client. Features intuitive restaurant browsing, cart management, and a sleek modern UI.",
-    image: "/assets/photos/crave_delivery.jpg",
+    image: "assets/photos/crave_delivery.jpg",
     tags: ["React.js", "TailwindCSS", "Node.js", "Express.js", "Stripe"],
     category: "Full Stack",
     github: "#",

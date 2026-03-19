@@ -89,7 +89,7 @@ export default function Navbar() {
             Hire me
           </button>
           <a 
-            href="/assets/cv/teja_cv.pdf" 
+            href="assets/cv/teja_cv.pdf" 
             download
             className="px-4 py-2 border border-white/20 text-white rounded-full text-xs font-bold hover:bg-white/10 transition-colors"
           >

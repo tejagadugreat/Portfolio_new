@@ -74,7 +74,7 @@ export default function Hero() {
                   <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </button>
                 <a 
-                   href="/assets/cv/teja_cv.pdf" 
+                   href="assets/cv/teja_cv.pdf" 
                    download
                    className="text-gray-900 dark:text-white font-bold text-lg flex items-center space-x-2 opacity-60 hover:opacity-100 transition-opacity"
                 >
@@ -119,7 +119,7 @@ export default function Hero() {
               className="relative z-10 w-64 h-80 md:w-96 md:h-[480px] shadow-[0_30px_100px_rgba(0,0,0,0.2)] rounded-[60px] overflow-hidden bg-gray-100"
             >
               <img 
-                src="/assets/photos/profile.jpg" 
+                src="assets/photos/profile.jpg" 
                 alt="Teja Reddy" 
                 className="w-full h-full object-cover"
                 onError={(e) => { e.target.onerror = null; e.target.src = 'https://ui-avatars.com/api/?name=Teja+Reddy&background=fb923c&color=fff&size=512'; }}

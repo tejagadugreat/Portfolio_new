@@ -14,13 +14,13 @@ export default function Gallery() {
     // or simulate it, because browser JS can't read OS directories directly without help.
     // Let's create a predefined list for demonstration, and instruct user how to add them.
     const demoImages = [
-       { src: '/assets/certificates/nptel_llm.png', title: 'Introduction to LLMs - NPTEL' },
-       { src: '/assets/certificates/code_a_haunt.png', title: 'Code-A-Haunt Hackathon' },
-       { src: '/assets/certificates/dsa_training.jpg', title: 'DSA Summer Bootcamp' },
-       { src: '/assets/certificates/Automata.png', title: 'Automata Theory Certification' },
-       { src: '/assets/certificates/Generative Ai.png', title: 'Generative AI Masterclass' },
-       { src: '/assets/certificates/Promt Engineering.png', title: 'Prompt Engineering' },
-       { src: '/assets/photos/profile.jpg', title: 'Profile Snapshot' },
+       { src: 'assets/certificates/nptel_llm.png', title: 'Introduction to LLMs - NPTEL' },
+       { src: 'assets/certificates/code_a_haunt.png', title: 'Code-A-Haunt Hackathon' },
+       { src: 'assets/certificates/dsa_training.jpg', title: 'DSA Summer Bootcamp' },
+       { src: 'assets/certificates/Automata.png', title: 'Automata Theory Certification' },
+       { src: 'assets/certificates/Generative Ai.png', title: 'Generative AI Masterclass' },
+       { src: 'assets/certificates/Promt Engineering.png', title: 'Prompt Engineering' },
+       { src: 'assets/photos/profile.jpg', title: 'Profile Snapshot' },
     ];
     setImages(demoImages);
   }, []);
