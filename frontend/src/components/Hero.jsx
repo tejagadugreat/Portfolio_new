@@ -1,180 +1,136 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, Download, ArrowRight, Code } from 'lucide-react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
-import * as random from 'maath/random/dist/maath-random.esm';
-
-const ParticleBackground = (props) => {
-  const ref = useRef();
-  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }));
-
-  useFrame((state, delta) => {
-    ref.current.rotation.x -= delta / 10;
-    ref.current.rotation.y -= delta / 15;
-  });
-
-  return (
-    <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
-        <PointMaterial
-          transparent
-          color="#c084fc"
-          size={0.005}
-          sizeAttenuation={true}
-          depthWrite={false}
-        />
-      </Points>
-    </group>
-  );
-};
-
-const texts = [
-  "Web Developer",
-  "Problem Solver",
-  "AI Enthusiast",
-  "Full Stack Developer"
-];
+import React from 'react';
+import { motion } from 'framer-motion';
+import { MousePointer2, Star, Sparkles, Send, Download } from 'lucide-react';
 
 export default function Hero() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % texts.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* 3D Background */}
-      <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 1] }}>
-          <ParticleBackground />
-        </Canvas>
-      </div>
-
-      {/* Content */}
-      <div className="container mx-auto px-6 relative z-10 text-center flex flex-col items-center">
-        
-        {/* Profile Photo Wrapper */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative w-48 h-48 md:w-72 md:h-72 rounded-full border-4 border-yellow-400 p-1 mb-8 shadow-[0_0_40px_rgba(250,204,21,0.6)]"
-        >
-          <div className="w-full h-full rounded-full bg-gray-800 flex justify-center items-center overflow-hidden">
-            <img src="/assets/photos/profile.jpg" alt="Teja Reddy" className="w-full h-full object-cover" onError={(e) => { e.target.onerror = null; e.target.src = 'https://ui-avatars.com/api/?name=Teja+Reddy&background=random&size=200'; }} />
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <h1 className="text-4xl md:text-7xl font-extrabold mb-4 text-white">
-            Hi 👋 I'm <span className="text-gradient">Teja Reddy</span>
-          </h1>
-          <h2 className="text-xl md:text-2xl text-gray-400 font-medium mb-4">
-            Full Stack Developer | MERN Stack Enthusiast
-          </h2>
-        </motion.div>
-
-        {/* Animated Text Cycling */}
-        <div className="h-10 my-4 flex items-center justify-center overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.h3
-              key={index}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-2xl md:text-3xl font-semibold text-purple-400"
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-[#050505] pt-20 transition-colors duration-500">
+      
+      {/* Abstract Background Shapes */}
+      <div className="absolute top-20 left-10 w-64 h-64 bg-orange-100/50 dark:bg-peach/10 rounded-full blur-3xl opacity-60" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-100/50 dark:bg-purple-900/10 rounded-full blur-3xl opacity-60" />
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-20">
+          
+          {/* Left Side: Intro */}
+          <div className="w-full md:w-1/2 text-center md:text-left">
+            {/* Greeting Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 shadow-sm mb-8"
             >
-              {texts[index]}
-            </motion.h3>
-          </AnimatePresence>
+              <span className="text-gray-600 dark:text-gray-400 font-medium">Hello there!</span>
+              <Sparkles size={16} className="text-orange-400" />
+            </motion.div>
+
+            {/* Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 dark:text-white tracking-tight mb-4"
+            >
+              I'm <span className="text-peach">Teja Reddy,</span><br />
+              Full Stack <span className="relative">
+                Developer
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 358 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 9C118.957 4.47226 235.483 2.02084 355 9" stroke="#fb923c" strokeWidth="5" strokeLinecap="round"/>
+                </svg>
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="max-w-xl text-gray-500 dark:text-gray-400 text-lg md:text-xl font-medium mt-6 mb-12 mx-auto md:mx-0"
+            >
+              Building exceptional digital experiences that combine innovative design with robust engineering. Specialized in MERN Stack and AI applications.
+            </motion.p>
+
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-wrap items-center justify-center md:justify-start gap-6 z-20"
+            >
+              <button 
+                 onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
+                 className="px-10 py-5 bg-gray-900 dark:bg-white dark:text-black text-white rounded-full font-bold text-lg flex items-center space-x-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-all hover:scale-105 shadow-xl"
+              >
+                <span>View My Work</span>
+                <MousePointer2 size={20} />
+              </button>
+              
+              <div className="flex items-center space-x-6">
+                <button 
+                   onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                   className="text-gray-900 dark:text-white font-bold text-lg flex items-center space-x-2 group"
+                >
+                  <span>Hire me</span>
+                  <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </button>
+                <a 
+                   href="/assets/cv/teja_cv.pdf" 
+                   download
+                   className="text-gray-900 dark:text-white font-bold text-lg flex items-center space-x-2 opacity-60 hover:opacity-100 transition-opacity"
+                >
+                  <span>CV</span>
+                  <Download size={20} />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+
+          {/* Right Side: Photo Section */}
+          <div className="w-full md:w-1/2 relative flex justify-center md:justify-end">
+            {/* Circular Background */}
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 100, delay: 0.3 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[450px] md:h-[450px] bg-peach rounded-full opacity-80"
+            />
+            
+            {/* Floating Badges */}
+            <motion.div
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="absolute -right-4 bottom-1/4 z-20 bg-white p-4 rounded-2xl shadow-2xl hidden lg:block text-left"
+            >
+              <div className="flex items-center space-x-1 text-orange-400 mb-1">
+                {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
+              </div>
+              <p className="text-xl font-bold text-gray-900">2 Years</p>
+              <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Industry Exp.</p>
+            </motion.div>
+
+
+            {/* Profile Image */}
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative z-10 w-64 h-80 md:w-96 md:h-[480px] shadow-[0_30px_100px_rgba(0,0,0,0.2)] rounded-[60px] overflow-hidden bg-gray-100"
+            >
+              <img 
+                src="/assets/photos/profile.jpg" 
+                alt="Teja Reddy" 
+                className="w-full h-full object-cover"
+                onError={(e) => { e.target.onerror = null; e.target.src = 'https://ui-avatars.com/api/?name=Teja+Reddy&background=fb923c&color=fff&size=512'; }}
+              />
+            </motion.div>
+          </div>
+          
         </div>
-
-        {/* Typing Intro */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 1 }}
-          className="max-w-2xl mx-auto text-gray-300 mt-6 md:text-lg mb-10"
-        >
-          Computer Science Engineering student at Lovely Professional University,
-          passionate about building scalable web applications and solving real-world problems.
-        </motion.p>
-
-        {/* Social Icons */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="flex space-x-6 mb-10"
-        >
-          <a href="https://github.com/tejagadugreat" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-300 bg-white/5 p-3 rounded-full hover:shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-            <Github size={28} />
-          </a>
-          <a href="https://leetcode.com/u/krishana_teja_123/" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-orange-400 hover:scale-110 transition-all duration-300 bg-white/5 p-3 rounded-full hover:shadow-[0_0_15px_rgba(249,115,22,0.4)]">
-            <Code size={28} />
-          </a>
-          <a href="https://www.linkedin.com/in/k-venkata-krishana-teja-baab48287/" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#0077b5] hover:scale-110 transition-all duration-300 bg-white/5 p-3 rounded-full hover:shadow-[0_0_15px_rgba(0,119,181,0.5)]">
-            <Linkedin size={28} />
-          </a>
-          <a href="mailto:kteja0816@gmail.com" className="text-gray-400 hover:text-red-500 hover:scale-110 transition-all duration-300 bg-white/5 p-3 rounded-full hover:shadow-[0_0_15px_rgba(239,68,68,0.5)]">
-            <Mail size={28} />
-          </a>
-        </motion.div>
-
-        {/* Buttons */}
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-          className="flex flex-wrap justify-center gap-4"
-        >
-          <a
-            href="/assets/cv/teja_cv.pdf"
-            download
-            className="group relative inline-flex items-center justify-center px-8 py-3 font-semibold text-white transition-all duration-200 bg-purple-600 rounded-full hover:bg-purple-500 shadow-[0_0_20px_rgba(147,51,234,0.4)] hover:shadow-[0_0_30px_rgba(147,51,234,0.6)]"
-          >
-            <Download className="mr-2" size={20} />
-            Download CV
-          </a>
-          
-          <button
-            onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-            className="group inline-flex items-center justify-center px-8 py-3 font-semibold text-white transition-all duration-200 bg-transparent border-2 border-purple-500 rounded-full hover:bg-purple-500/10"
-          >
-            View Projects
-            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-          </button>
-          
-          <button
-            onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-            className="group inline-flex items-center justify-center px-8 py-3 font-semibold text-gray-300 transition-all duration-200 bg-white/5 border border-white/10 rounded-full hover:bg-white/10"
-          >
-            Contact Me
-          </button>
-        </motion.div>
-        
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-400"
-      >
-        <div className="w-[30px] h-[50px] rounded-full border-2 border-gray-400 flex justify-center pt-2">
-          <div className="w-1.5 h-3 bg-gradient-to-b from-purple-500 to-blue-500 rounded-full" />
-        </div>
-      </motion.div>
     </section>
   );
 }
+
+

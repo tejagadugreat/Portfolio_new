@@ -10,8 +10,10 @@ import Achievements from './components/Achievements';
 import Education from './components/Education';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
+import ThemePuller from './components/ThemePuller';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -54,10 +56,12 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen relative text-gray-200">
+    <div className="min-h-screen relative text-gray-200 transition-colors duration-500">
+      <ThemePuller />
       <Navbar />
       <main>
         <Hero />
+
         <About />
         <Skills />
         <Projects />

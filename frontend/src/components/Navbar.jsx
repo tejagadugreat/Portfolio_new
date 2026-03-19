@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Hexagon } from 'lucide-react';
 
-const sections = [
-  'Home', 'About', 'Skills', 'Projects', 'Experience',
-  'Certificates', 'Achievements', 'Education', 'Gallery', 'Contact'
-];
+const leftSections = ['Home', 'About', 'Skills'];
+const rightSections = ['Projects', 'Experience', 'Contact'];
+const allSections = [...leftSections, ...rightSections];
 
 export default function Navbar() {
   const [active, setActive] = useState('Home');
@@ -16,7 +15,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
       
-      const current = sections.find(section => {
+      const current = allSections.find(section => {
         const element = document.getElementById(section.toLowerCase());
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -42,27 +41,65 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#050505]/80 backdrop-blur-md border-b border-white/5 shadow-lg' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500 cursor-pointer" onClick={() => scrollToSection('Home')}>
-          {'<TejaReddy/>'}
-        </div>
-
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex space-x-6">
-          {sections.map((item) => (
-            <div
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 overflow-hidden ${scrolled ? 'bg-white/90 dark:bg-black/95 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 shadow-xl py-2' : 'bg-white/50 dark:bg-black/50 backdrop-blur-sm py-4'}`}>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        
+        {/* Desktop Left Menu */}
+        <div className="hidden lg:flex items-center space-x-8">
+          {leftSections.map((item) => (
+            <button
               key={item}
-              className={`cursor-pointer px-3 py-1 text-sm font-medium rounded-full transition-all duration-300 ${active === item ? 'text-white bg-white/10 shadow-[0_0_10px_rgba(147,51,234,0.5)]' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+              className={`text-sm font-black tracking-[0.1em] uppercase transition-all duration-300 ${active === item ? 'text-peach' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}`}
               onClick={() => scrollToSection(item)}
             >
               {item}
-            </div>
+            </button>
           ))}
         </div>
 
+        {/* Centered Logo */}
+        <div 
+          className="flex items-center space-x-2 cursor-pointer group"
+          onClick={() => scrollToSection('Home')}
+        >
+          <div className="w-10 h-10 peach-gradient rounded-full flex items-center justify-center text-white shadow-[0_0_20px_rgba(251,146,60,0.3)] group-hover:rotate-12 transition-transform duration-300">
+            <Hexagon size={24} fill="currentColor" />
+          </div>
+          <span className="text-xl font-black tracking-tighter text-gray-900 dark:text-white">
+            TEJA<span className="text-peach">REDDY</span>
+          </span>
+        </div>
+
+        {/* Desktop Right Menu */}
+        <div className="hidden lg:flex items-center space-x-8">
+          {rightSections.map((item) => (
+            <button
+              key={item}
+              className={`text-sm font-black tracking-[0.1em] uppercase transition-all duration-300 ${active === item ? 'text-peach' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}`}
+              onClick={() => scrollToSection(item)}
+            >
+              {item}
+            </button>
+          ))}
+
+          <button 
+             onClick={() => scrollToSection('Contact')}
+             className="px-6 py-2 peach-gradient text-white rounded-full text-sm font-black shadow-[0_0_20px_rgba(251,146,60,0.4)] hover:scale-105 transition-transform"
+          >
+            Hire me
+          </button>
+          <a 
+            href="/assets/cv/teja_cv.pdf" 
+            download
+            className="px-4 py-2 border border-white/20 text-white rounded-full text-xs font-bold hover:bg-white/10 transition-colors"
+          >
+            CV
+          </a>
+
+        </div>
+
         {/* Mobile Menu Button */}
-        <button className="lg:hidden text-gray-300 hover:text-white" onClick={() => setIsOpen(!isOpen)}>
+        <button className="lg:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -74,22 +111,24 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden bg-[#0a0a10]/95 backdrop-blur-lg border-b border-white/10"
+            className="lg:hidden bg-black border-b border-white/10"
           >
-            <div className="flex flex-col px-6 py-4 space-y-4">
-              {sections.map((item) => (
-                 <div
+            <div className="flex flex-col px-6 py-8 space-y-6">
+              {allSections.map((item) => (
+                 <button
                  key={item}
-                 className={`cursor-pointer text-lg font-medium transition-colors ${active === item ? 'text-purple-400' : 'text-gray-400'}`}
+                 className={`text-left text-xl font-bold transition-colors ${active === item ? 'text-peach' : 'text-gray-400'}`}
                  onClick={() => scrollToSection(item)}
                >
                  {item}
-               </div>
+               </button>
               ))}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </nav>
+
   );
 }
+

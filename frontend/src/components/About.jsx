@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
-import { Code2, Brain, CheckCircle, Trophy, BookOpen } from 'lucide-react';
+import { Code2, Brain, CheckCircle, Trophy, BookOpen, User } from 'lucide-react';
 
 const Counter = ({ to, label, icon: Icon }) => {
   const ref = useRef(null);
@@ -19,107 +19,94 @@ const Counter = ({ to, label, icon: Icon }) => {
   }, [to, inView]);
 
   return (
-    <div ref={ref} className="glass-card p-6 flex flex-col items-center justify-center rounded-2xl border-t border-white/10 hover:border-purple-500/50 transition-colors">
-      <div className="text-purple-400 mb-3 bg-purple-500/10 p-3 rounded-full">
-        <Icon size={28} />
+    <div ref={ref} className="bg-white p-6 flex flex-col items-center justify-center rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+      <div className="text-peach mb-3 bg-orange-50 p-3 rounded-2xl">
+        <Icon size={24} />
       </div>
-      <h3 className="text-4xl font-bold text-white mb-2">{val}+</h3>
-      <p className="text-gray-400 text-sm tracking-wide uppercase">{label}</p>
+      <h3 className="text-3xl font-black text-gray-900 mb-1">{val}+</h3>
+      <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">{label}</p>
     </div>
   );
 };
 
 export default function About() {
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-[#050505]">
-      {/* Background Glows */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
-
+    <section id="about" className="py-32 relative overflow-hidden bg-white dark:bg-[#050505] transition-colors duration-500 border-t border-gray-100 dark:border-white/5">
+      {/* Background Shapes */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-50/50 dark:bg-blue-900/5 rounded-full blur-[120px] pointer-events-none" />
+      
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-4"
-          >
-            About <span className="text-gradient">Me</span>
-          </motion.h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full" />
-        </div>
-
-        <div className="grid lg:grid-cols-3 gap-12 items-center">
-          {/* Timeline Style Journey */}
+        <div className="flex flex-col md:flex-row items-center gap-16 lg:gap-24">
+          
+          {/* Left Side: Photo */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:order-1 space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-purple-500/50 before:to-transparent"
+            className="md:w-5/12 relative"
           >
-            {[
-              { title: "Passion for Web Apps", icon: Code2, desc: "Building scalable and beautiful full-stack web applications." },
-              { title: "Problem Solving Mindset", icon: Brain, desc: "Tackling complex challenges with optimized algorithms and logic." },
-              { title: "AI Technologies", icon: BookOpen, desc: "Constantly learning and integrating AI tools to enhance development." },
-              { title: "Real-World Projects", icon: CheckCircle, desc: "Experience in building production-ready projects for clients." }
-            ].map((item, index) => (
-              <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group mx-auto">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#101015] border-2 border-purple-500 shadow-[0_0_15px_rgba(147,51,234,0.5)] z-10 text-purple-400 group-hover:scale-110 transition-transform">
-                  <item.icon size={18} />
-                </div>
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] lg:w-[calc(100%-4rem)] glass p-5 rounded-xl border border-white/5 hover:border-purple-500/30 transition-colors shadow-lg shadow-black/50 ml-6 md:ml-0 md:group-even:mr-auto md:group-odd:ml-auto lg:group-even:mr-0 lg:ml-6">
-                  <h4 className="text-lg font-bold text-white mb-2">{item.title}</h4>
-                  <p className="text-sm text-gray-400">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Profile Photo (Middle column on desktop) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:order-2 flex justify-center"
-          >
-            <div className="relative group">
-               {/* Decorative border */}
-               <div className="absolute -inset-4 bg-gradient-to-br from-purple-600 to-blue-600 rounded-3xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500" />
-               <div className="relative w-64 h-80 md:w-80 md:h-[450px] rounded-3xl overflow-hidden border-2 border-white/10 p-2 glass-card">
-                  <img src="/assets/photos/profile.jpg" alt="Teja Reddy Profile" className="w-full h-full object-cover rounded-2xl" onError={(e) => { e.target.onerror = null; e.target.src = 'https://ui-avatars.com/api/?name=Teja+Reddy&background=random&size=400'; }} />
-               </div>
+            <div className="relative z-10 rounded-[60px] overflow-hidden shadow-2xl dark:shadow-peach/10 rotate-3 hover:rotate-0 transition-transform duration-500">
+               <img 
+                 src="/assets/photos/profile.jpg" 
+                 alt="Teja Reddy" 
+                 className="w-full aspect-[4/5] object-cover"
+                 onError={(e) => { e.target.onerror = null; e.target.src = 'https://ui-avatars.com/api/?name=Teja+Reddy&background=fb923c&color=fff&size=512'; }}
+               />
             </div>
+            {/* Decorative background circle */}
+            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-peach rounded-full opacity-10 blur-3xl" />
           </motion.div>
 
-          {/* Description & Counters (Right column on desktop) */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:order-3 flex flex-col justify-center space-y-8"
-          >
-            <div className="glass-card p-8 rounded-2xl relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <p className="text-lg text-gray-300 leading-relaxed font-light relative z-10">
-                Hi, I'm <strong className="text-white font-semibold">Teja Reddy</strong>, a Computer Science Engineering student at
-                Lovely Professional University. I have a robust interest in building
-                dynamic full-stack web applications and solving real-world problems using modern technology.
-                My goal is to craft digital experiences that are not just functional, but <span className="text-purple-400 italic">visually stunning</span> and highly efficient.
+          {/* Right Side: Content */}
+          <div className="md:w-7/12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-12 h-1 bg-peach rounded-full" />
+                <span className="text-peach font-black uppercase tracking-[0.3em] text-sm">About Me</span>
+              </div>
+              
+              <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white leading-tight mb-8">
+                Building Digital Products with <span className="text-gray-400">Passion & Purpose.</span>
+              </h2>
+
+              <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl font-medium leading-relaxed mb-10">
+                I'm a Computer Science Engineering student at Lovely Professional University with a deep obsession for full-stack development. I combine technical precision with creative problem-solving to build applications that don't just work—they excel.
               </p>
-            </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <Counter to={15} label="Projects" icon={Code2} />
-              <Counter to={90} label="DSA Problems" icon={Brain} />
-              <Counter to={5} label="Certificates" icon={Trophy} />
-              <div className="lg:hidden md:block">
-                 <Counter to={100} label="Happy Clients" icon={CheckCircle} />
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                 <Counter to={15} label="Projects" icon={Code2} />
+                 <Counter to={90} label="DSA Problems" icon={Brain} />
+                 <Counter to={5} label="Certificates" icon={Trophy} />
               </div>
-            </div>
-          </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="mt-12 p-8 bg-gray-50 dark:bg-white/5 rounded-[32px] border border-gray-100 dark:border-white/10 flex items-start space-x-6 shadow-sm"
+              >
+                <div className="w-14 h-14 bg-white dark:bg-white/10 rounded-2xl flex items-center justify-center text-peach shadow-sm shrink-0">
+                  <User size={28} />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">My Philosophy</h4>
+                  <p className="text-gray-500 dark:text-gray-400 font-medium">
+                    I believe that every line of code should contribute to a seamless user experience. My goal is to bridge the gap between complex backend logic and intuitive frontend design.
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+
+
         </div>
       </div>
     </section>
   );
 }
+
